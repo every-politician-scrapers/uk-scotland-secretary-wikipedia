@@ -6,6 +6,7 @@
 
 require 'csv'
 require 'pry'
+require 'shellwords'
 
 require_relative 'lib/inputfile'
 
@@ -33,5 +34,5 @@ wikipedia.data.each do |wp|
   end
 
   warn "    To add #{wp[:P580]} - #{wp[:P582]} call:"
-  puts ['add_full_P39.js', wp.values_at(:id, :P580, :P582, :P1365, :P1366)].join(' ')
+  puts "add_full_P39.js #{wp.values_at(:id, :P580, :P582, :P1365, :P1366).shelljoin}"
 end
