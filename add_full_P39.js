@@ -1,10 +1,11 @@
 module.exports = (id, startdate, enddate, replaces, replacedby) => {
   const qualifiers = { }
 
-  if (startdate)  qualifiers['P580']  = startdate
-  if (enddate)    qualifiers['P582']  = enddate
-  if (replaces)   qualifiers['P1365'] = replaces
-  if (replacedby) qualifiers['P1366'] = replacedby
+  // Seems like there should be a better way of filtering these...
+  if (startdate && startdate != "''")  qualifiers['P580']  = startdate
+  if (enddate && enddate != "''")    qualifiers['P582']  = enddate
+  if (replaces && replaces != "''")   qualifiers['P1365'] = replaces
+  if (replacedby && replacedby != "''") qualifiers['P1366'] = replacedby
 
   if (startdate && enddate && (startdate > enddate)) throw new Error(`Invalid dates: ${startdate} / ${enddate}`)
 
